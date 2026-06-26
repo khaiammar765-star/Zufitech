@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex, nofollow" />
+  <title>Admin Dashboard — ZufiTech</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@300;400;500;600;700&family=Barlow+Condensed:wght@600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    body { background: var(--color-bg); }
+    .dashboard-wrap { display: flex; min-height: 100vh; }
+
+    .sidebar {
+      width: 260px; background: var(--color-dark); color: #fff;
+      padding: 28px 20px; position: fixed; left: 0; top: 0;
+      height: 100vh; overflow-y: auto; z-index: 50;
+    }
+    .sidebar-logo {
+      font-family: var(--font-display); font-size: 24px; font-weight: 800;
+      margin-bottom: 32px; letter-spacing: 0.5px; color: #fff;
+    }
+    .sidebar-logo span { color: var(--color-accent); }
+    .sidebar-section {
+      font-size: 10px; color: #555; letter-spacing: 0.14em;
+      text-transform: uppercase; font-weight: 600;
+      margin: 20px 12px 10px;
+    }
+    .sidebar-nav { list-style: none; }
+    .sidebar-nav a {
+      display: flex; align-items: center; gap: 12px;
+      padding: 11px 14px; color: #aaa;
+      border-radius: var(--radius); font-size: 14px;
+      font-weight: 500; margin-bottom: 4px; transition: 0.2s;
+    }
+    .sidebar-nav a:hover { background: rgba(255,255,255,0.06); color: #fff; }
+    .sidebar-nav a.active { background: var(--color-accent); color: #fff; font-weight: 600; }
+    .sidebar-nav a .icon { width: 18px; text-align: center; font-size: 15px; }
+
+    .main { flex: 1; margin-left: 260px; padding: 0; }
+
+    .topbar {
+      background: var(--color-surface); border-bottom: 1px solid var(--color-border);
+      padding: 16px 32px;
+      display: flex; justify-content: space-between; align-items: center;
+      position: sticky; top: 0; z-index: 10;
+    }
+    .topbar h1 { font-family: var(--font-display); font-size: 24px; font-weight: 800; }
+    .topbar-user { display: flex; align-items: center; gap: 12px; font-size: 14px; }
+    .user-avatar {
+      width: 36px; height: 36px; border-radius: 50%;
+      background: var(--color-accent); color: #fff;
+      display: flex; align-items: center; justify-content: center;
+      font-weight: 700; font-family: var(--font-display); font-size: 16px;
+    }
+
+    .content { padding: 28px 32px; }
+
+    .stats-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 18px; margin-bottom: 32px;
+    }
+    .stat-card {
+      background: var(--color-surface); border: 1px solid var(--color-border);
+      border-radius: 10px; padding: 20px;
+      display: flex; justify-content: space-between; align-items: center;
+    }
+    .stat-card .lbl {
+      font-size: 11px; color: var(--color-muted); letter-spacing: 0.1em;
+      text-transform: uppercase; font-weight: 600; margin-bottom: 6px;
+    }
+    .stat-card .val {
+      font-family: var(--font-display); font-size: 30px; font-weight: 800;
+      color: var(--color-dark); line-height: 1;
+    }
+    .stat-card .icon {
+      width: 44px; height: 44px; border-radius: 10px;
+      background: var(--color-accent-lt); color: var(--color-accent);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 22px;
+    }
+
+    .table-wrap {
+      background: var(--color-surface); border: 1px solid var(--color-border);
+      border-radius: 10px; overflow: hidden;
+    }
+    .table-header {
+      padding: 18px 24px; border-bottom: 1px solid var(--color-border);
+      display: flex; justify-content: space-between; align-items: center;
+      flex-wrap: wrap; gap: 12px;
+    }
+    .table-header h3 { font-family: var(--font-display); font-size: 20px; font-weight: 800; }
+    .table-filters { display: flex; gap: 8px; flex-wrap: wrap; }
+    .filter-btn {
+      padding: 6px 14px; background: var(--color-bg);
+      border: 1px solid var(--color-border); border-radius: 20px;
+      font-size: 12px; font-weight: 600; cursor: pointer;
+      color: var(--color-muted); text-transform: capitalize; transition: 0.2s;
+    }
+    .filter-btn.active, .filter-btn:hover {
+      background: var(--color-accent); color: #fff; border-color: var(--color-accent);
+    }
+
+    .orders-table { width: 100%; border-collapse: collapse; }
+    .orders-table th, .orders-table td {
+      padding: 14px 24px; text-align: left; font-size: 13px;
+      border-bottom: 1px solid var(--color-border);
+    }
+    .orders-table th {
+      background: var(--color-bg); color: var(--color-muted);
+      font-weight: 600; text-transform: uppercase; letter-spacing: 0.06em;
+      font-size: 11px;
+    }
+    .orders-table tr:hover { background: var(--color-bg); }
+    .orders-table .order-num {
+      font-family: var(--font-display); font-weight: 700;
+      color: var(--color-accent); letter-spacing: 1px;
+    }
+    .orders-table .price { font-family: var(--font-display); font-weight: 700; color: var(--color-dark); }
+
+    .modal-content.large { max-width: 720px; }
+    .order-detail-grid {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 18px;
+      margin-bottom: 24px;
+    }
+    .detail-item { background: var(--color-bg); padding: 12px 14px; border-radius: 8px; }
+    .detail-item label {
+      font-size: 10px; color: var(--color-muted); text-transform: uppercase;
+      letter-spacing: 0.1em; font-weight: 600; display: block; margin-bottom: 4px;
+    }
+    .detail-item .val { font-size: 14px; color: var(--color-dark); font-weight: 500; }
+
+    .status-update-box { background: var(--color-accent-lt); padding: 16px; border-radius: 8px; margin-top: 20px; }
+
+    .timeline { padding-left: 24px; position: relative; margin-top: 16px; }
+    .timeline::before {
+      content: ''; position: absolute; left: 6px; top: 4px; bottom: 4px;
+      width: 2px; background: var(--color-border);
+    }
+    .timeline-item { position: relative; padding-bottom: 14px; }
+    .timeline-item::before {
+      content: ''; position: absolute; left: -22px; top: 4px;
+      width: 12px; height: 12px; border-radius: 50%;
+      background: var(--color-accent);
+    }
+
+    .empty { text-align: center; padding: 60px 20px; color: var(--color-muted); }
+    .empty-icon { font-size: 56px; margin-bottom: 12px; opacity: 0.5; }
+
+    .menu-toggle { display: none; background: none; border: none; font-size: 24px; cursor: pointer; }
+    @media (max-width: 768px) {
+      .sidebar { transform: translateX(-100%); transition: transform 0.3s; }
+      .sidebar.open { transform: translateX(0); }
+      .main { margin-left: 0; }
+      .menu-toggle { display: block; }
+      .orders-table { font-size: 12px; }
+      .orders-table th, .orders-table td { padding: 10px 14px; }
+      .order-detail-grid { grid-template-columns: 1fr; }
+      .content { padding: 20px; }
+      .topbar { padding: 14px 20px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="dashboard-wrap">
+    <aside class="sidebar" id="sidebar">
+      <div class="sidebar-logo">Zufi<span>Tech</span></div>
+      <div class="sidebar-section">Main</div>
+      <ul class="sidebar-nav">
+        <li><a href="#" class="active" onclick="showView('orders'); return false;"><span class="icon">📋</span> Orders</a></li>
+        <li><a href="#" onclick="showView('builds'); return false;"><span class="icon">🖥️</span> PC Builds</a></li>
+      </ul>
+      <div class="sidebar-section">Account</div>
+      <ul class="sidebar-nav">
+        <li><a href="index.html"><span class="icon">🏠</span> View Site</a></li>
+        <li><a href="index.html"><span class="icon">🚪</span> Sign Out</a></li>
+      </ul>
+    </aside>
+
+    <main class="main">
+      <div class="topbar">
+        <div style="display: flex; align-items: center; gap: 12px;">
+          <button class="menu-toggle" onclick="document.getElementById('sidebar').classList.toggle('open')">☰</button>
+          <h1 id="viewTitle">Orders</h1>
+        </div>
+        <div class="topbar-user">
+          <div>
+            <div style="font-weight: 600; font-size: 13px;">Admin</div>
+            <div style="font-size: 11px; color: var(--color-muted);">Administrator</div>
+          </div>
+          <div class="user-avatar">A</div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div id="ordersView">
+          <div class="stats-grid">
+            <div class="stat-card">
+              <div><div class="lbl">Total Orders</div><div class="val" id="statTotal">0</div></div>
+              <div class="icon">📋</div>
+            </div>
+            <div class="stat-card">
+              <div><div class="lbl">Pending</div><div class="val" id="statPending">0</div></div>
+              <div class="icon">🟡</div>
+            </div>
+            <div class="stat-card">
+              <div><div class="lbl">In Progress</div><div class="val" id="statProgress">0</div></div>
+              <div class="icon">🔧</div>
+            </div>
+            <div class="stat-card">
+              <div><div class="lbl">Revenue</div><div class="val" id="statRevenue">RM 0</div></div>
+              <div class="icon">💰</div>
+            </div>
+          </div>
+
+          <div class="table-wrap">
+            <div class="table-header">
+              <h3>All Orders</h3>
+              <div class="table-filters" id="filters">
+                <button class="filter-btn active" onclick="filterOrders('all', this)">All</button>
+                <button class="filter-btn" onclick="filterOrders('pending', this)">Pending</button>
+                <button class="filter-btn" onclick="filterOrders('building', this)">Building</button>
+                <button class="filter-btn" onclick="filterOrders('testing', this)">Testing</button>
+                <button class="filter-btn" onclick="filterOrders('shipped', this)">Shipped</button>
+                <button class="filter-btn" onclick="filterOrders('delivered', this)">Delivered</button>
+              </div>
+            </div>
+            <div id="ordersTableWrap">
+              <div class="empty"><span class="spinner"></span></div>
+            </div>
+          </div>
+        </div>
+
+        <div id="buildsView" style="display: none;">
+          <div class="table-wrap">
+            <div class="table-header">
+              <h3>PC Builds Catalog</h3>
+              <span style="font-size: 13px; color: var(--color-muted);">Available builds in catalog</span>
+            </div>
+            <div id="buildsTableWrap"></div>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <div class="modal" id="orderModal">
+    <div class="modal-content large">
+      <div class="modal-header">
+        <h3>Order Details</h3>
+        <button class="modal-close" onclick="closeOrderModal()">×</button>
+      </div>
+      <div class="modal-body" id="orderModalBody"></div>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+  <script>
+    let allOrders = [];
+    let currentFilter = 'all';
+    let currentOrder = null;
+
+    seedSampleOrders();
+    loadOrders();
+
+    function loadOrders() {
+      try {
+        allOrders = getAllOrders();
+        updateStats();
+        renderOrders();
+      } catch (err) {
+        document.getElementById('ordersTableWrap').innerHTML = `<div class="empty"><div class="empty-icon">⚠️</div><p>Failed to load orders: ${err.message}</p></div>`;
+      }
+    }
+
+    function updateStats() {
+      const total = allOrders.length;
+      const pending = allOrders.filter(o => o.status === 'pending').length;
+      const progress = allOrders.filter(o => ['building', 'testing'].includes(o.status)).length;
+      const revenue = allOrders.filter(o => o.status !== 'cancelled').reduce((sum, o) => sum + (o.totalPrice || 0), 0);
+
+      document.getElementById('statTotal').textContent = total;
+      document.getElementById('statPending').textContent = pending;
+      document.getElementById('statProgress').textContent = progress;
+      document.getElementById('statRevenue').textContent = formatPrice(revenue);
+    }
+
+    function filterOrders(status, btn) {
+      currentFilter = status;
+      document.querySelectorAll('#filters .filter-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      renderOrders();
+    }
+
+    function renderOrders() {
+      const wrap = document.getElementById('ordersTableWrap');
+      const filtered = currentFilter === 'all' ? allOrders : allOrders.filter(o => o.status === currentFilter);
+
+      if (filtered.length === 0) {
+        wrap.innerHTML = `<div class="empty"><div class="empty-icon">📭</div><p>No orders ${currentFilter !== 'all' ? `with status "${currentFilter}"` : 'yet'}</p></div>`;
+        return;
+      }
+
+      wrap.innerHTML = `
+        <div style="overflow-x: auto;">
+          <table class="orders-table">
+            <thead>
+              <tr>
+                <th>Order #</th><th>Customer</th><th>Build</th>
+                <th>Date</th><th>Total</th><th>Status</th><th></th>
+              </tr>
+            </thead>
+            <tbody>
+              ${filtered.map(o => `
+                <tr>
+                  <td><span class="order-num">${o.orderNumber}</span></td>
+                  <td>
+                    <div style="font-weight: 600;">${o.customerName}</div>
+                    <div style="font-size: 11px; color: var(--color-muted);">${o.customerPhone}</div>
+                  </td>
+                  <td>${o.buildName}</td>
+                  <td>${formatDate(o.createdAt)}</td>
+                  <td><span class="price">${formatPrice(o.totalPrice)}</span></td>
+                  <td>${formatStatus(o.status)}</td>
+                  <td><button class="btn btn-ghost btn-sm" onclick="openOrderDetail('${o.orderNumber}')">View</button></td>
+                </tr>`).join('')}
+            </tbody>
+          </table>
+        </div>
+      `;
+    }
+
+    function openOrderDetail(orderNumber) {
+      currentOrder = allOrders.find(o => o.orderNumber === orderNumber) || getOrder(orderNumber);
+      if (!currentOrder) return;
+      renderOrderDetail();
+      document.getElementById('orderModal').classList.add('active');
+    }
+
+    function closeOrderModal() {
+      document.getElementById('orderModal').classList.remove('active');
+    }
+
+    function renderOrderDetail() {
+      const o = currentOrder;
+      const upgradesHtml = (o.upgrades || []).length
+        ? `<ul style="margin-top:6px; font-size:13px;">${o.upgrades.map(u => `<li>• ${u.label} (+${formatPrice(u.price)})</li>`).join('')}</ul>`
+        : '<span class="val">None</span>';
+
+      const history = (o.statusHistory || []).slice().reverse();
+      const historyHtml = history.map(h => {
+        const s = ORDER_STATUSES[h.status] || ORDER_STATUSES.pending;
+        return `
+          <div class="timeline-item">
+            <div style="font-weight: 600; font-size: 13px;">${s.icon} ${s.label}</div>
+            <div style="font-size: 12px; color: var(--color-muted); margin: 2px 0;">${h.note}</div>
+            <div style="font-size: 11px; color: var(--color-muted);">${formatDate(h.timestamp)}</div>
+          </div>
+        `;
+      }).join('');
+
+      document.getElementById('orderModalBody').innerHTML = `
+        <div style="display: flex; justify-content: space-between; align-items: center; padding: 14px 18px; background: var(--color-dark); color: #fff; border-radius: 10px; margin-bottom: 24px;">
+          <div>
+            <div style="font-size: 11px; color: #aaa; letter-spacing: 0.08em; text-transform: uppercase;">Order 🖥️ Pre-built PC</div>
+            <div style="font-family: var(--font-display); font-size: 24px; font-weight: 800; letter-spacing: 1px;">${o.orderNumber}</div>
+          </div>
+          <div>${formatStatus(o.status)}</div>
+        </div>
+
+        <div class="order-detail-grid">
+          <div class="detail-item"><label>Customer Name</label><div class="val">${o.customerName}</div></div>
+          <div class="detail-item"><label>Phone</label><div class="val">${o.customerPhone}</div></div>
+          <div class="detail-item"><label>Email</label><div class="val">${o.customerEmail}</div></div>
+          <div class="detail-item"><label>Order Date</label><div class="val">${formatDate(o.createdAt)}</div></div>
+          <div class="detail-item" style="grid-column: 1/-1;"><label>Delivery Address</label><div class="val">${o.customerAddress}</div></div>
+          <div class="detail-item" style="grid-column: 1/-1;"><label>Build</label><div class="val"><strong>${o.buildName}</strong> — ${o.buildSpecs}</div></div>
+          ${(o.upgrades || []).length ? `<div class="detail-item" style="grid-column: 1/-1;"><label>Upgrades</label>${upgradesHtml}</div>` : ''}
+          ${o.customerNotes ? `<div class="detail-item" style="grid-column: 1/-1;"><label>Customer Notes</label><div class="val">${o.customerNotes}</div></div>` : ''}
+          <div class="detail-item" style="grid-column: 1/-1;"><label>Total Price</label><div class="val" style="font-family: var(--font-display); font-size: 22px; color: var(--color-accent); font-weight: 800;">${formatPrice(o.totalPrice)}</div></div>
+        </div>
+
+        <div class="status-update-box">
+          <div style="font-size: 11px; font-weight: 700; color: var(--color-accent); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 10px;">Update Status</div>
+          <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+            <select id="newStatus" class="input" style="flex: 1; min-width: 160px;">
+              ${Object.entries(ORDER_STATUSES).map(([k, v]) => `<option value="${k}" ${k === o.status ? 'selected' : ''}>${v.icon} ${v.label}</option>`).join('')}
+            </select>
+            <input type="text" class="input" id="statusNote" placeholder="Add a note (e.g., 'GPU installed today')" style="flex: 2; min-width: 200px;">
+            <button class="btn btn-primary" onclick="saveStatus()">Update</button>
+          </div>
+        </div>
+
+        <div style="margin-top: 24px;">
+          <h4 style="font-family: var(--font-display); font-size: 18px; margin-bottom: 12px;">📋 Status History</h4>
+          <div class="timeline">${historyHtml}</div>
+        </div>
+      `;
+    }
+
+    function saveStatus() {
+      const newStatus = document.getElementById('newStatus').value;
+      const note = document.getElementById('statusNote').value.trim() || ORDER_STATUSES[newStatus].label;
+
+      try {
+        updateOrderStatus(currentOrder.orderNumber, newStatus, note);
+        loadOrders();
+        currentOrder = allOrders.find(o => o.orderNumber === currentOrder.orderNumber);
+        renderOrderDetail();
+        alert('Status updated successfully!');
+      } catch (err) {
+        alert('Failed to update: ' + err.message);
+      }
+    }
+
+    function showView(view) {
+      ['orders', 'builds'].forEach(v => {
+        document.getElementById(v + 'View').style.display = v === view ? 'block' : 'none';
+      });
+      document.getElementById('viewTitle').textContent = { orders: 'Orders', builds: 'PC Builds' }[view];
+      document.querySelectorAll('.sidebar-nav a').forEach(a => a.classList.remove('active'));
+      event && event.target.classList.add('active');
+      if (view === 'builds') renderBuilds();
+    }
+
+    function renderBuilds() {
+      document.getElementById('buildsTableWrap').innerHTML = `
+        <table class="orders-table">
+          <thead>
+            <tr><th>Name</th><th>Category</th><th>Base Price</th><th>Specs</th></tr>
+          </thead>
+          <tbody>
+            ${PC_BUILDS.map(b => `
+              <tr>
+                <td><strong>${b.name}</strong> ${b.badge ? `<span class="badge badge-shipped" style="margin-left:8px;">${b.badge}</span>` : ''}</td>
+                <td style="text-transform: capitalize;">${b.category}</td>
+                <td><span class="price">${formatPrice(b.basePrice)}</span></td>
+                <td style="font-size: 12px; color: var(--color-muted);">${b.specs}</td>
+              </tr>
+            `).join('')}
+          </tbody>
+        </table>
+      `;
+    }
+  </script>
+</body>
+</html>
