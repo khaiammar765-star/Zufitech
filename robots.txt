@@ -3,4 +3,4 @@ Allow: /
 Disallow: /login.html
 Disallow: /dashboard.html
 
-Sitemap: https://zufitech.com.my/sitemap.xml
+Sitemap: https://zufitech.store/sitemap.xml
