@@ -19,7 +19,7 @@
   <meta property="og:title" content="PCs for Sale — ZufiTech Nilai" />
   <meta property="og:description" content="Ready-to-go gaming, workstation &amp; server PCs assembled and tested in Nilai." />
   <meta property="og:url" content="https://zufitech.store/shop.html" />
-  <meta property="og:image" content="https://zufitech.store/og-image.jpg" />
+  <meta property="og:image" content="https://zufitech.store/og-image.png" />
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@300;400;500;600;700&family=Barlow+Condensed:wght@600;700;800&display=swap" rel="stylesheet" />
@@ -106,16 +106,6 @@
     </div>
   </footer>
 
-  <div class="modal" id="orderModal">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h3>Place Your Order</h3>
-        <button class="modal-close" onclick="closeModal()">×</button>
-      </div>
-      <div class="modal-body" id="orderModalBody"></div>
-    </div>
-  </div>
-
   <script src="app.js"></script>
   <script>
     const grid = document.getElementById('product-grid');
@@ -130,6 +120,7 @@
         const badgeHtml = pc.badge
           ? `<div style="position:absolute;top:14px;right:14px;background:var(--color-accent);color:#fff;font-size:10px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;padding:4px 10px;border-radius:20px;">${pc.badge}</div>`
           : '';
+        const waText = encodeURIComponent(`Hi ZufiTech! I'm interested in the ${pc.name} (RM${pc.basePrice.toLocaleString()}). Can I get a quote?`);
         return `
         <div class="product-card">
           <div class="product-visual" style="background: linear-gradient(to bottom, rgba(0,0,0,0.1), rgba(0,0,0,0.75)), url('${pc.image}') center/cover;">
@@ -143,7 +134,7 @@
             <div class="product-name">${pc.name}</div>
             <div class="product-footer">
               <div class="product-price"><small>RM</small> ${pc.basePrice.toLocaleString()}</div>
-              <button class="btn btn-primary btn-sm" onclick="openOrderModal('${pc.id}')">Order</button>
+              <a href="https://wa.me/60139293619?text=${waText}" target="_blank" rel="noopener" class="btn btn-primary btn-sm">Order</a>
             </div>
           </div>
         </div>`;
@@ -154,124 +145,6 @@
       document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
       btn.classList.add('active');
       renderUI(category);
-    }
-
-    let currentPc = null;
-    let selectedUpgrades = [];
-
-    function openOrderModal(pcId) {
-      currentPc = PC_BUILDS.find(p => p.id === pcId);
-      selectedUpgrades = [];
-      renderOrderModal();
-      document.getElementById('orderModal').classList.add('active');
-    }
-
-    function closeModal() {
-      document.getElementById('orderModal').classList.remove('active');
-    }
-
-    function renderOrderModal() {
-      const upgradesHtml = Object.keys(currentPc.upgradeGroups).map(group => `
-        <div style="margin-bottom: 12px;">
-          <div style="font-size: 11px; font-weight: 700; color: var(--color-accent); text-transform: uppercase; margin-bottom: 6px;">${group}</div>
-          ${currentPc.upgradeGroups[group].map(opt => `
-            <label style="display: flex; justify-content: space-between; align-items: center; padding: 8px; background: var(--color-bg); border-radius: 6px; margin-bottom: 6px; cursor: pointer; font-size: 13px;">
-              <span><input type="checkbox" value="${opt.label}" data-price="${opt.price}" onchange="toggleUpgrade(this)" style="margin-right: 8px; accent-color: var(--color-accent);"> ${opt.label}</span>
-              <span style="color: var(--color-muted); font-weight: 600;">+RM${opt.price.toLocaleString()}</span>
-            </label>
-          `).join('')}
-        </div>
-      `).join('');
-
-      document.getElementById('orderModalBody').innerHTML = `
-        <div style="background: var(--color-accent-lt); padding: 16px; border-radius: 8px; margin-bottom: 20px;">
-          <div style="font-size: 11px; color: var(--color-accent); font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase;">${currentPc.category} build</div>
-          <div style="font-family: var(--font-display); font-size: 22px; font-weight: 800; color: var(--color-dark); margin: 4px 0;">${currentPc.name}</div>
-        </div>
-
-        <div style="margin-bottom: 16px;"><strong style="font-size: 13px;">Optional Upgrades</strong></div>
-        ${upgradesHtml}
-
-        <hr style="margin: 20px 0; border: none; border-top: 1px solid var(--color-border);">
-
-        <div class="form-group">
-          <label>Your Full Name *</label>
-          <input type="text" class="input" id="custName" required>
-        </div>
-        <div class="form-group">
-          <label>Phone Number *</label>
-          <input type="tel" class="input" id="custPhone" placeholder="012-3456789" required>
-        </div>
-        <div class="form-group">
-          <label>Email *</label>
-          <input type="email" class="input" id="custEmail" required>
-        </div>
-        <div class="form-group">
-          <label>Pickup / Delivery Address *</label>
-          <textarea class="input" id="custAddress" required></textarea>
-        </div>
-        <div class="form-group">
-          <label>Additional Notes</label>
-          <textarea class="input" id="custNotes" placeholder="Any special requests..."></textarea>
-        </div>
-
-        <div style="background: var(--color-dark); color: #fff; padding: 16px; border-radius: 8px; display: flex; justify-content: space-between; align-items: center; margin-top: 20px;">
-          <span style="font-size: 13px; letter-spacing: 0.08em; text-transform: uppercase;">Total Estimate</span>
-          <span style="font-family: var(--font-display); font-size: 28px; font-weight: 800; color: var(--color-accent);"><small style="font-size: 13px; color: #888;">RM</small> <span id="modalTotal">${currentPc.basePrice.toLocaleString()}</span></span>
-        </div>
-
-        <button class="btn btn-primary" style="width: 100%; margin-top: 16px; justify-content: center;" onclick="submitOrder()" id="submitBtn">Submit Order</button>
-      `;
-    }
-
-    function toggleUpgrade(cb) {
-      if (cb.checked) selectedUpgrades.push({ label: cb.value, price: parseInt(cb.dataset.price) });
-      else selectedUpgrades = selectedUpgrades.filter(u => u.label !== cb.value);
-      const total = currentPc.basePrice + selectedUpgrades.reduce((a, b) => a + b.price, 0);
-      document.getElementById('modalTotal').textContent = total.toLocaleString();
-    }
-
-    function submitOrder() {
-      const name = document.getElementById('custName').value.trim();
-      const phone = document.getElementById('custPhone').value.trim();
-      const email = document.getElementById('custEmail').value.trim();
-      const address = document.getElementById('custAddress').value.trim();
-      const notes = document.getElementById('custNotes').value.trim();
-
-      if (!name || !phone || !email || !address) {
-        alert('Please fill in all required fields.');
-        return;
-      }
-
-      const total = currentPc.basePrice + selectedUpgrades.reduce((a, b) => a + b.price, 0);
-
-      const orderNumber = createOrder({
-        customerName: name, customerPhone: phone, customerEmail: email,
-        customerAddress: address, customerNotes: notes,
-        buildId: currentPc.id, buildName: currentPc.name,
-        buildCategory: currentPc.category, buildSpecs: currentPc.specs,
-        basePrice: currentPc.basePrice, upgrades: selectedUpgrades,
-        totalPrice: total
-      });
-
-      const waText = encodeURIComponent(`Hi ZufiTech! I just placed order ${orderNumber} for a ${currentPc.name}. (Total: RM${total.toLocaleString()})`);
-
-      document.getElementById('orderModalBody').innerHTML = `
-        <div style="text-align: center; padding: 20px 0;">
-          <div style="font-size: 64px; margin-bottom: 16px;">✅</div>
-          <h3 style="font-family: var(--font-display); font-size: 28px; color: var(--color-dark); margin-bottom: 12px;">Order Submitted!</h3>
-          <p style="color: var(--color-muted); margin-bottom: 24px;">Your order has been received. Save your order number below — our team will contact you to confirm.</p>
-          <div style="background: var(--color-accent-lt); padding: 20px; border-radius: 8px; margin-bottom: 20px;">
-            <div style="font-size: 12px; color: var(--color-accent); font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 6px;">Your Order Number</div>
-            <div style="font-family: var(--font-display); font-size: 36px; font-weight: 800; color: var(--color-dark); letter-spacing: 2px;">${orderNumber}</div>
-          </div>
-          <p style="font-size: 13px; color: var(--color-muted); margin-bottom: 20px;">📌 Screenshot or note this number for your reference.</p>
-          <div style="display: flex; gap: 10px; justify-content: center;">
-            <a href="https://wa.me/60139293619?text=${waText}" target="_blank" rel="noopener" class="btn btn-primary">💬 Confirm on WhatsApp</a>
-            <button class="btn btn-ghost" onclick="closeModal()">Close</button>
-          </div>
-        </div>
-      `;
     }
 
     renderUI();

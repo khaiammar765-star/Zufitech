@@ -82,33 +82,6 @@ function _saveOrders(orders) {
   localStorage.setItem(ORDERS_KEY, JSON.stringify(orders));
 }
 
-function generateOrderNumber() {
-  const chars = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789';
-  let id = 'ZT-';
-  for (let i = 0; i < 5; i++) id += chars[Math.floor(Math.random() * chars.length)];
-  return id;
-}
-
-function createOrder(orderData) {
-  const orderNumber = generateOrderNumber();
-  const order = {
-    ...orderData,
-    orderNumber,
-    status: 'pending',
-    createdAt: Date.now(),
-    updatedAt: Date.now(),
-    statusHistory: [{
-      status: 'pending',
-      note: 'Order received and pending review',
-      timestamp: Date.now()
-    }]
-  };
-  const orders = _loadOrders();
-  orders[orderNumber] = order;
-  _saveOrders(orders);
-  return orderNumber;
-}
-
 function getOrder(orderNumber) {
   return _loadOrders()[orderNumber] || null;
 }
