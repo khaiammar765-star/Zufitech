@@ -1,6 +1,8 @@
 User-agent: *
 Allow: /
+
 Disallow: /login.html
 Disallow: /dashboard.html
+Disallow: /my-orders.html
 
 Sitemap: https://zufitech.store/sitemap.xml
