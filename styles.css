@@ -225,6 +225,18 @@ html[data-theme="dark"] footer{background:#000}
 .rating-stars{display:flex;gap:4px;justify-content:center;margin:8px 0 6px;color:var(--accent)}
 .rating-stars svg{width:24px;height:24px}
 .rating-count{font-size:14px;color:var(--muted)}
+.reviews-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:8px}
+.review-card{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:26px;display:flex;flex-direction:column;gap:14px}
+.review-head{display:flex;align-items:center;gap:12px}
+.review-avatar{width:44px;height:44px;border-radius:50%;background:var(--accent);color:#fff;display:flex;align-items:center;justify-content:center;font-family:var(--font-display);font-weight:800;font-size:20px;flex-shrink:0}
+.review-meta{display:flex;flex-direction:column}
+.review-name{font-weight:700;color:var(--heading);font-size:15px}
+.review-time{font-size:12px;color:var(--muted)}
+.review-stars{display:flex;gap:2px;color:var(--accent)}
+.review-stars svg{width:18px;height:18px}
+.review-text{color:var(--text);font-size:14px;line-height:1.7}
+.review-source{font-size:12px;color:var(--muted);margin-top:auto}
+@media(max-width:768px){.reviews-grid{grid-template-columns:1fr}}
 .footer-tagline{font-size:14px;line-height:1.6;max-width:320px}
 .footer-col h4{font-size:12px;color:#fff;letter-spacing:.1em;text-transform:uppercase;margin-bottom:16px}
 .footer-col ul{list-style:none}
