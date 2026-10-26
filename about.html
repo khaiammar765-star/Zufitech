@@ -3,194 +3,142 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <script>(function(){try{var t=localStorage.getItem('zt-theme');if(!t)t=matchMedia('(prefers-color-scheme:dark)').matches?'dark':'light';document.documentElement.setAttribute('data-theme',t);}catch(e){}})();</script>
 
-  <!-- Favicon -->
   <link rel="icon" href="/favicon.ico" sizes="any" />
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
   <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
   <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
 
-  <!-- SEO -->
-  <title>About ZufiTech — Computer &amp; Phone Repair in Nilai</title>
-  <meta name="description" content="ZufiTech is a Nilai-based computer and phone service: laptop, handphone and desktop repair, second-hand laptops, and custom PC builds. Honest work, fair prices." />
+  <title>About — ZufiTech Nilai Computer &amp; Phone Shop</title>
+  <meta name="description" content="ZufiTech is a trusted one-stop computer and phone shop in Nilai, Negeri Sembilan — honest diagnosis, quality parts and a warranty on every repair." />
   <link rel="canonical" href="https://zufitech.store/about.html" />
-  <meta property="og:title" content="About ZufiTech — Repair &amp; Custom PCs in Nilai" />
-  <meta property="og:description" content="Your friendly neighbourhood tech shop in Nilai. Repair, second-hand laptops, and custom PC builds." />
+
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="About — ZufiTech Nilai" />
+  <meta property="og:description" content="A trusted one-stop computer &amp; phone shop in Nilai. Honest diagnosis, quality parts, warranty on every repair." />
   <meta property="og:url" content="https://zufitech.store/about.html" />
   <meta property="og:image" content="https://zufitech.store/og-image.png" />
+  <meta name="twitter:card" content="summary_large_image" />
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@300;400;500;600;700&family=Barlow+Condensed:wght@600;700;800&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="styles.css" />
-  <style>
-    .page-hero { background: var(--color-dark); color: #fff; padding: 64px 0 52px; }
-    .page-hero .tag { display:inline-block; font-family: var(--font-body); font-size:12px; font-weight:700; letter-spacing:0.14em; text-transform:uppercase; color: var(--color-accent); margin-bottom:14px; }
-    .page-hero h1 { font-family: var(--font-display); font-size: clamp(36px, 5vw, 54px); font-weight: 800; margin-bottom: 10px; line-height:1.05; }
-    .page-hero p { color: #aaa; max-width: 560px; font-size:17px; }
-
-    .section { padding: 64px 0; }
-    .section-alt { background: var(--color-surface); border-top:1px solid var(--color-border); border-bottom:1px solid var(--color-border); }
-    .lead { max-width: 720px; font-size: 19px; line-height: 1.75; color: var(--color-text); }
-    .lead strong { color: var(--color-dark); }
-
-    .sec-title { font-family: var(--font-display); font-size: clamp(26px,3.5vw,36px); font-weight: 800; color: var(--color-dark); margin-bottom: 8px; }
-    .sec-sub { color: var(--color-muted); margin-bottom: 32px; }
-
-    .grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px,1fr)); gap: 18px; }
-    .svc-card .ic { font-size: 30px; margin-bottom: 12px; }
-    .svc-card h3 { font-family: var(--font-display); font-size: 22px; font-weight: 800; color: var(--color-dark); margin-bottom: 8px; }
-    .svc-card p { font-size: 14px; color: var(--color-muted); line-height: 1.65; }
-
-    .why-list { display:grid; grid-template-columns: repeat(auto-fit, minmax(240px,1fr)); gap: 14px 32px; max-width: 860px; }
-    .why-item { display:flex; gap:12px; align-items:flex-start; }
-    .why-item .chk { color: var(--color-accent); font-weight:800; font-size:18px; line-height:1.5; }
-    .why-item b { color: var(--color-dark); }
-    .why-item span.d { color: var(--color-muted); font-size:14px; }
-
-    .cta-band { background: linear-gradient(135deg, var(--color-dark), #1a1a1a); color:#fff; border-radius:16px; padding: 44px; text-align:center; }
-    .cta-band h2 { font-family: var(--font-display); font-size: clamp(26px,3.5vw,34px); font-weight:800; margin-bottom:10px; }
-    .cta-band p { color:#bbb; margin-bottom:24px; }
-    .cta-actions { display:flex; gap:12px; justify-content:center; flex-wrap:wrap; }
-
-    footer { background: #0A0A0A; padding: 40px 0; color: #777; }
-    .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 40px; margin-bottom: 32px; }
-    .footer-logo { font-family: var(--font-display); font-size: 24px; font-weight: 800; color: #fff; margin-bottom: 12px; }
-    .footer-logo span { color: var(--color-accent); }
-    .footer-tagline { font-size: 14px; line-height: 1.6; max-width: 320px; }
-    .footer-col h4 { font-size: 12px; color: #fff; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 16px; }
-    .footer-col ul { list-style: none; }
-    .footer-col li { margin-bottom: 8px; }
-    .footer-col a { font-size: 13px; color: #888; transition: color 0.15s; }
-    .footer-col a:hover { color: var(--color-accent); }
-    .footer-bottom { border-top:1px solid #222; padding-top:24px; display:flex; justify-content:space-between; flex-wrap:wrap; gap:8px; font-size:12px; color:#666; }
-    @media (max-width:768px){ .footer-grid{ grid-template-columns:1fr; gap:24px; } }
-  </style>
 </head>
 <body>
-  <!-- NAV -->
-  <nav class="public-nav">
+  <nav class="site-nav">
     <div class="nav-inner">
-      <div class="nav-logo"><a href="index.html">Zufi<span>Tech</span></a></div>
+      <a href="index.html" class="nav-logo"><img src="assets/logo.png" class="nav-logo-img" alt="" />Zufi<span>Tech</span></a>
       <ul class="nav-links">
         <li><a href="index.html">Home</a></li>
-        <li><a href="index.html#products">Builds</a></li>
-        <li><a href="laptops.html">Laptops</a></li>
+        <li><a href="services.html">Services</a></li>
+        <li><a href="reviews.html">Reviews</a></li>
+        <li><a href="suppliers.html">Suppliers</a></li>
         <li><a href="about.html" class="active">About</a></li>
         <li><a href="contact.html">Contact</a></li>
       </ul>
-      <div style="display:flex; gap:10px; align-items:center;">
-        <a href="login.html" class="btn btn-ghost btn-sm">Login</a>
-        <a href="contact.html" class="btn btn-primary btn-sm">Get in Touch</a>
+      <div class="nav-right">
+        <button id="themeToggle" class="theme-toggle" aria-label="Toggle dark mode"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg></button>
+        <a href="https://wa.me/60139293619" target="_blank" rel="noopener" class="btn btn-primary btn-sm">WhatsApp</a>
+        <button id="navToggle" class="nav-toggle" aria-label="Menu">&#9776;</button>
       </div>
     </div>
   </nav>
 
-  <!-- HERO -->
-  <div class="page-hero">
+  <header class="page-head">
     <div class="container">
-      <span class="tag">About Us</span>
-      <h1>Your neighbourhood<br />tech shop in Nilai</h1>
-      <p>Honest work, fair prices, and no confusing jargon — that's ZufiTech.</p>
+      <div class="section-label">Who We Are</div>
+      <h1>About ZufiTech</h1>
+      <p>Your friendly neighbourhood tech shop in Nilai — repairs and sales you can trust.</p>
+    </div>
+  </header>
+
+  <section class="section">
+    <div class="container">
+      <div class="prose reveal">
+        <p>ZufiTech is a one-stop computer and phone shop based in Taman Desa Indah, Nilai. We repair and sell desktops, custom PCs, laptops, phones, iPads and tablets — all under one roof.</p>
+        <p>We started with a simple idea: tech repair should be honest, fast and fair. That means a free diagnosis, a clear quote before we touch anything, quality parts, and a warranty that stands behind our work. No jargon, no surprise charges.</p>
+        <img src="assets/photos/g2.jpg" alt="ZufiTech repair workbench with microscope in Nilai" class="about-photo" />
+        <h3>Why customers choose us</h3>
+        <p>Locals keep coming back because we treat every device like our own. Whether it's a cracked phone screen on a busy morning or a full PC build for gaming and work, we take the time to get it right — and to explain what we did and why.</p>
+        <h3>A registered local business</h3>
+        <p>ZufiTech System Enterprise is a registered business under SSM (202603273361 / CT0170453-T), led hands-on by founder Khairul Ammar bin Abd Rahmat. You deal directly with the person doing the work — real expertise and a genuinely personal level of service.</p>
+        <h3>Right here in Nilai</h3>
+        <p>Drop by the shop during opening hours, or WhatsApp us a photo of the problem for a quick estimate. We're proud to serve Nilai and the surrounding Negeri Sembilan area.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="why-section">
+    <div class="container">
+      <div class="features-grid">
+        <div class="feature-item reveal d1">
+          <div class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l7 2.5V11c0 4.5-3 7.6-7 9-4-1.4-7-4.5-7-9V5.5z"/><path d="M9 11.5l2 2 4-4"/></svg></div>
+          <div class="feature-title">Honest &amp; Transparent</div>
+          <p class="feature-desc">Free diagnosis and a clear quote first. You decide before any work begins.</p>
+        </div>
+        <div class="feature-item reveal d2">
+          <div class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14.5 6.5a3.8 3.8 0 0 0-5 5L4 17l3 3 5.5-5.5a3.8 3.8 0 0 0 5-5l-2.7 2.7-2.3-2.3z"/></svg></div>
+          <div class="feature-title">Quality Parts</div>
+          <p class="feature-desc">We use reliable parts from trusted suppliers so your repair lasts.</p>
+        </div>
+        <div class="feature-item reveal d3">
+          <div class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l7 2.5V11c0 4.5-3 7.6-7 9-4-1.4-7-4.5-7-9V5.5z"/></svg></div>
+          <div class="feature-title">Warranty Backed</div>
+          <p class="feature-desc">Every repair is covered. If the same issue returns, so do we.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="cta-band">
+    <div class="container">
+      <h2>Come Say Hello</h2>
+      <p>Visit us in Nilai or message us on WhatsApp — we're happy to help.</p>
+      <a href="contact.html" class="btn btn-primary">Find Us</a>
     </div>
   </div>
 
-  <!-- INTRO -->
-  <section class="section">
-    <div class="container">
-      <p class="lead">
-        <strong>ZufiTech</strong> is a computer and phone service based in Taman Desa Indah, Nilai.
-        Whether your laptop won't boot, your phone screen is cracked, your desktop needs new life,
-        or you're after a tested second-hand laptop or a brand-new custom PC — we've got you covered.
-        We keep it simple: tell us the problem, we diagnose it honestly, and we fix or build it right.
-      </p>
-    </div>
-  </section>
-
-  <!-- WHAT WE DO -->
-  <section class="section section-alt">
-    <div class="container">
-      <h2 class="sec-title">What We Do</h2>
-      <p class="sec-sub">Repairs, sales, and custom builds — all under one roof.</p>
-      <div class="grid-3">
-        <div class="card svc-card">
-          <div class="ic">🔧</div>
-          <h3>Repairs</h3>
-          <p>Laptop, handphone and desktop repair — from screen and battery replacements to boot issues, water damage, and slow performance. Free diagnosis first.</p>
-        </div>
-        <div class="card svc-card">
-          <div class="ic">💻</div>
-          <h3>Second-hand Laptops</h3>
-          <p>Inspected, cleaned and tested pre-owned laptops at honest prices. Every unit comes with a ZufiTech warranty so you can buy with confidence.</p>
-        </div>
-        <div class="card svc-card">
-          <div class="ic">🖥️</div>
-          <h3>Custom PC Builds</h3>
-          <p>New and used PCs built around your budget and needs — gaming, work, or study. Pick a ready build or configure your own with our online builder.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- WHY -->
-  <section class="section">
-    <div class="container">
-      <h2 class="sec-title">Why ZufiTech</h2>
-      <p class="sec-sub">The small things that make dealing with us easy.</p>
-      <div class="why-list">
-        <div class="why-item"><span class="chk">✓</span><div><b>Free diagnosis</b><br /><span class="d">We check the problem before you commit to anything.</span></div></div>
-        <div class="why-item"><span class="chk">✓</span><div><b>Warranty on every job</b><br /><span class="d">Repairs and used units are backed by our warranty.</span></div></div>
-        <div class="why-item"><span class="chk">✓</span><div><b>Honest pricing</b><br /><span class="d">Clear quotes, no surprise charges, no upselling.</span></div></div>
-        <div class="why-item"><span class="chk">✓</span><div><b>Fast turnaround</b><br /><span class="d">Most common repairs are done quickly — just ask.</span></div></div>
-        <div class="why-item"><span class="chk">✓</span><div><b>Local &amp; personal</b><br /><span class="d">Run hands-on by its founder, so you always deal with someone who knows your machine.</span></div></div>
-        <div class="why-item"><span class="chk">✓</span><div><b>WhatsApp-first</b><br /><span class="d">Quick answers on WhatsApp — no waiting on hold.</span></div></div>
-      </div>
-    </div>
-  </section>
-
-  <!-- CTA -->
-  <section class="section" style="padding-top:0;">
-    <div class="container">
-      <div class="cta-band">
-        <h2>Ready to fix or upgrade?</h2>
-        <p>Message us on WhatsApp and tell us what you need — we'll take it from there.</p>
-        <div class="cta-actions">
-          <a href="https://wa.me/60139293619?text=Hi%20ZufiTech%2C%20saya%20nak%20tanya%20tentang%20servis" target="_blank" class="btn btn-primary">💬 WhatsApp Us</a>
-          <a href="contact.html" class="btn btn-ghost" style="color:#fff;border-color:#444;">Contact Details</a>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- FOOTER -->
   <footer>
     <div class="container">
       <div class="footer-grid">
         <div>
-          <div class="footer-logo">Zufi<span>Tech</span></div>
-          <p class="footer-tagline">Computer &amp; phone repair, second-hand laptops, and custom PC builds — based in Nilai, Negeri Sembilan.</p>
+          <div class="footer-logo"><img src="assets/logo.png" class="footer-logo-img" alt="" />Zufi<span>Tech</span></div>
+          <p class="footer-tagline">Computer &amp; phone repair and sales in Nilai, Negeri Sembilan. Desktops, PCs, laptops, phones, iPads &amp; tablets — fixed and sold with care.</p>
+          <p class="footer-legal">ZufiTech System Enterprise<br />SSM 202603273361 (CT0170453-T)</p>
+          <div class="footer-social">
+            <a href="https://www.tiktok.com/@zufitech" target="_blank" rel="noopener" aria-label="ZufiTech on TikTok"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 17V6l9-2v9"/><circle cx="6" cy="17" r="3"/><circle cx="15" cy="15" r="3"/></svg></a>
+            <a href="https://maps.app.goo.gl/PG9FfYiGetwgMJkE7" target="_blank" rel="noopener" aria-label="ZufiTech on Google Maps"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 10c0 5.5-8 11-8 11s-8-5.5-8-11a8 8 0 0 1 16 0z"/><circle cx="12" cy="10" r="2.7"/></svg></a>
+          </div>
         </div>
         <div class="footer-col">
           <h4>Explore</h4>
           <ul>
-            <li><a href="index.html#products">All Builds</a></li>
-            <li><a href="laptops.html">Laptops</a></li>
-            <li><a href="tracker.html">Track Order</a></li>
-            <li><a href="about.html">About</a></li>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="services.html">Services</a></li>
+            <li><a href="reviews.html">Reviews</a></li>
+            <li><a href="suppliers.html">Suppliers</a></li>
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="contact.html">Contact</a></li>
           </ul>
         </div>
         <div class="footer-col">
           <h4>Contact</h4>
           <ul>
-            <li><a href="https://wa.me/60139293619" target="_blank">💬 WhatsApp 013-929 3619</a></li>
-            <li><a href="contact.html">📍 Taman Desa Indah, Nilai</a></li>
+            <li><a href="https://wa.me/60139293619" target="_blank" rel="noopener">WhatsApp Us</a></li>
+            <li><a href="tel:+60139293619">+60 13-929 3619</a></li>
+            <li><a href="mailto:zufitech7@gmail.com">zufitech7@gmail.com</a></li>
+            <li>No 51, Jalan Indah 20,<br />Taman Desa Indah,<br />71800 Nilai, N. Sembilan</li>
           </ul>
         </div>
       </div>
       <div class="footer-bottom">
-        <p>© 2026 ZufiTech. All rights reserved.</p>
-        <p>Built by Khairul Ammar</p>
+        <p>© 2026 ZufiTech System Enterprise (SSM 202603273361). All rights reserved.</p>
       </div>
     </div>
   </footer>
+
+  <a href="https://wa.me/60139293619" target="_blank" rel="noopener" class="wa-float" aria-label="Chat on WhatsApp"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.5 11.5a8 8 0 0 1-11.9 7L3.5 20l1.6-4.9a8 8 0 1 1 15.4-3.6z"/></svg></a>
+  <script src="app.js"></script>
 </body>
 </html>

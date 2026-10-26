@@ -3,217 +3,147 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <script>(function(){try{var t=localStorage.getItem('zt-theme');if(!t)t=matchMedia('(prefers-color-scheme:dark)').matches?'dark':'light';document.documentElement.setAttribute('data-theme',t);}catch(e){}})();</script>
 
-  <!-- Favicon -->
   <link rel="icon" href="/favicon.ico" sizes="any" />
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
   <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
   <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
 
-  <!-- SEO -->
-  <title>Contact ZufiTech — WhatsApp, Location &amp; Hours (Nilai)</title>
-  <meta name="description" content="Contact ZufiTech in Taman Desa Indah, Nilai. WhatsApp 013-929 3619. Open daily — Mon–Fri 7–10PM, Sat–Sun 10AM–10PM. Laptop, phone &amp; PC repair and custom builds." />
+  <title>Contact — ZufiTech Nilai Computer &amp; Phone Shop</title>
+  <meta name="description" content="Contact ZufiTech in Nilai: WhatsApp +60 13-929 3619, visit No 51 Jalan Indah 20 Taman Desa Indah, 71800 Nilai. Open Mon–Thu 7pm–11:30pm, Fri 8pm–12am, Sat–Sun 12pm–1am." />
   <link rel="canonical" href="https://zufitech.store/contact.html" />
-  <meta property="og:title" content="Contact ZufiTech — Nilai" />
-  <meta property="og:description" content="WhatsApp 013-929 3619 · Taman Desa Indah, Nilai · Open daily. Repair, laptops &amp; custom PCs." />
+
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Contact — ZufiTech Nilai" />
+  <meta property="og:description" content="WhatsApp, call or visit ZufiTech in Nilai. Open Mon–Thu 7pm–11:30pm, Fri 8pm–12am, Sat–Sun 12pm–1am." />
   <meta property="og:url" content="https://zufitech.store/contact.html" />
   <meta property="og:image" content="https://zufitech.store/og-image.png" />
+  <meta name="twitter:card" content="summary_large_image" />
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@300;400;500;600;700&family=Barlow+Condensed:wght@600;700;800&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="styles.css" />
-
-  <!-- ContactPoint structured data -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "ElectronicsStore",
-    "name": "ZufiTech",
-    "url": "https://zufitech.store/",
-    "image": "https://zufitech.store/og-image.png",
-    "telephone": "+60139293619",
-    "address": {
-      "@type": "PostalAddress",
-      "streetAddress": "Taman Desa Indah",
-      "addressLocality": "Nilai",
-      "postalCode": "71800",
-      "addressRegion": "Negeri Sembilan",
-      "addressCountry": "MY"
-    },
-    "openingHoursSpecification": [
-      { "@type": "OpeningHoursSpecification", "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday"], "opens": "19:00", "closes": "22:00" },
-      { "@type": "OpeningHoursSpecification", "dayOfWeek": ["Saturday","Sunday"], "opens": "10:00", "closes": "22:00" }
-    ]
-  }
-  </script>
-
-  <style>
-    .page-hero { background: var(--color-dark); color: #fff; padding: 64px 0 52px; }
-    .page-hero .tag { display:inline-block; font-size:12px; font-weight:700; letter-spacing:0.14em; text-transform:uppercase; color: var(--color-accent); margin-bottom:14px; }
-    .page-hero h1 { font-family: var(--font-display); font-size: clamp(36px, 5vw, 54px); font-weight: 800; margin-bottom: 10px; }
-    .page-hero p { color: #aaa; max-width: 560px; font-size:17px; }
-
-    .contact-wrap { padding: 56px 0 72px; }
-    .contact-grid { display: grid; grid-template-columns: 1fr 1.1fr; gap: 40px; align-items: start; }
-    @media (max-width: 860px){ .contact-grid { grid-template-columns: 1fr; gap: 28px; } }
-
-    .info-card { display:flex; gap:16px; align-items:flex-start; padding: 20px; border:1px solid var(--color-border); border-radius: 12px; background: var(--color-surface); margin-bottom: 14px; transition:0.2s; }
-    .info-card:hover { border-color: var(--color-accent); box-shadow: 0 8px 24px rgba(0,0,0,0.05); }
-    .info-card .ic { width:46px; height:46px; flex-shrink:0; border-radius:10px; background: var(--color-accent-lt); color: var(--color-accent); display:flex; align-items:center; justify-content:center; font-size:22px; }
-    .info-card h3 { font-family: var(--font-display); font-size: 18px; font-weight: 800; color: var(--color-dark); margin-bottom: 3px; }
-    .info-card p { font-size: 14px; color: var(--color-muted); line-height:1.6; }
-    .info-card a.big { font-size: 20px; font-weight: 700; color: var(--color-accent); }
-
-    .form-card { background: var(--color-surface); border:1px solid var(--color-border); border-radius: 14px; padding: 32px; }
-    .form-card h2 { font-family: var(--font-display); font-size: 26px; font-weight: 800; color: var(--color-dark); margin-bottom: 4px; }
-    .form-card .hint { font-size: 13px; color: var(--color-muted); margin-bottom: 22px; }
-
-    footer { background: #0A0A0A; padding: 40px 0; color: #777; }
-    .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 40px; margin-bottom: 32px; }
-    .footer-logo { font-family: var(--font-display); font-size: 24px; font-weight: 800; color: #fff; margin-bottom: 12px; }
-    .footer-logo span { color: var(--color-accent); }
-    .footer-tagline { font-size: 14px; line-height: 1.6; max-width: 320px; }
-    .footer-col h4 { font-size: 12px; color: #fff; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 16px; }
-    .footer-col ul { list-style: none; }
-    .footer-col li { margin-bottom: 8px; }
-    .footer-col a { font-size: 13px; color: #888; transition: color 0.15s; }
-    .footer-col a:hover { color: var(--color-accent); }
-    .footer-bottom { border-top:1px solid #222; padding-top:24px; display:flex; justify-content:space-between; flex-wrap:wrap; gap:8px; font-size:12px; color:#666; }
-    @media (max-width:768px){ .footer-grid{ grid-template-columns:1fr; gap:24px; } }
-  </style>
 </head>
 <body>
-  <!-- NAV -->
-  <nav class="public-nav">
+  <nav class="site-nav">
     <div class="nav-inner">
-      <div class="nav-logo"><a href="index.html">Zufi<span>Tech</span></a></div>
+      <a href="index.html" class="nav-logo"><img src="assets/logo.png" class="nav-logo-img" alt="" />Zufi<span>Tech</span></a>
       <ul class="nav-links">
         <li><a href="index.html">Home</a></li>
-        <li><a href="index.html#products">Builds</a></li>
-        <li><a href="laptops.html">Laptops</a></li>
+        <li><a href="services.html">Services</a></li>
+        <li><a href="reviews.html">Reviews</a></li>
+        <li><a href="suppliers.html">Suppliers</a></li>
         <li><a href="about.html">About</a></li>
         <li><a href="contact.html" class="active">Contact</a></li>
       </ul>
-      <div style="display:flex; gap:10px; align-items:center;">
-        <a href="login.html" class="btn btn-ghost btn-sm">Login</a>
-        <a href="https://wa.me/60139293619" target="_blank" class="btn btn-primary btn-sm">💬 WhatsApp</a>
+      <div class="nav-right">
+        <button id="themeToggle" class="theme-toggle" aria-label="Toggle dark mode"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg></button>
+        <a href="https://wa.me/60139293619" target="_blank" rel="noopener" class="btn btn-primary btn-sm">WhatsApp</a>
+        <button id="navToggle" class="nav-toggle" aria-label="Menu">&#9776;</button>
       </div>
     </div>
   </nav>
 
-  <!-- HERO -->
-  <div class="page-hero">
+  <header class="page-head">
     <div class="container">
-      <span class="tag">Contact</span>
-      <h1>Get in Touch</h1>
-      <p>Got a device that needs fixing, or looking for a laptop or new PC? We're one message away.</p>
+      <div class="section-label">Get in Touch</div>
+      <h1>Contact ZufiTech</h1>
+      <p>Drop by the shop, give us a call, or send a WhatsApp — we'll get back to you fast.</p>
     </div>
-  </div>
+  </header>
 
-  <!-- CONTACT -->
-  <div class="contact-wrap">
-    <div class="container contact-grid">
+  <section class="contact-section">
+    <div class="container">
+      <div class="contact-grid">
+        <ul class="contact-list reveal">
+          <li>
+            <div class="contact-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.5 11.5a8 8 0 0 1-11.9 7L3.5 20l1.6-4.9a8 8 0 1 1 15.4-3.6z"/></svg></div>
+            <div>
+              <div class="contact-lbl">WhatsApp</div>
+              <div class="contact-val"><a href="https://wa.me/60139293619" target="_blank" rel="noopener">+60 13-929 3619</a></div>
+            </div>
+          </li>
+          <li>
+            <div class="contact-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 16.5v3a2 2 0 0 1-2.2 2 19 19 0 0 1-8.3-3 18.7 18.7 0 0 1-5.7-5.7 19 19 0 0 1-3-8.4A2 2 0 0 1 3.8 2H6.8a2 2 0 0 1 2 1.7c.1.9.3 1.7.6 2.5a2 2 0 0 1-.5 2.1L7.6 9.6a15 15 0 0 0 5.7 5.7l1.3-1.3a2 2 0 0 1 2.1-.5c.8.3 1.6.5 2.5.6a2 2 0 0 1 1.8 2z"/></svg></div>
+            <div>
+              <div class="contact-lbl">Call</div>
+              <div class="contact-val"><a href="tel:+60139293619">+60 13-929 3619</a></div>
+            </div>
+          </li>
+          <li>
+            <div class="contact-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 10c0 5.5-8 11-8 11s-8-5.5-8-11a8 8 0 0 1 16 0z"/><circle cx="12" cy="10" r="2.7"/></svg></div>
+            <div>
+              <div class="contact-lbl">Visit</div>
+              <div class="contact-val">No 51, Jalan Indah 20, Taman Desa Indah,<br />71800 Nilai, Negeri Sembilan</div>
+            </div>
+          </li>
+          <li>
+            <div class="contact-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7.5V12l3 2"/></svg></div>
+            <div>
+              <div class="contact-lbl">Opening Hours</div>
+              <div class="contact-val">Monday – Thursday: 7:00pm – 11:30pm<br />Friday: 8:00pm – 12:00am<br />Saturday – Sunday: 12:00pm – 1:00am</div>
+            </div>
+          </li>
+        </ul>
 
-      <!-- LEFT: info -->
-      <div>
-        <a href="https://wa.me/60139293619?text=Hi%20ZufiTech%2C%20saya%20nak%20tanya%20tentang%20servis" target="_blank" class="info-card">
-          <div class="ic">💬</div>
-          <div>
-            <h3>WhatsApp (fastest)</h3>
-            <span class="big">013-929 3619</span>
-            <p>Tap to chat — we usually reply quickly.</p>
-          </div>
-        </a>
-        <div class="info-card">
-          <div class="ic">📍</div>
-          <div>
-            <h3>Location</h3>
-            <p>Taman Desa Indah,<br />71800 Nilai, Negeri Sembilan.</p>
-          </div>
-        </div>
-        <div class="info-card">
-          <div class="ic">🕒</div>
-          <div>
-            <h3>Opening Hours</h3>
-            <p><b>Open daily</b><br />Mon–Fri: 7:00 PM – 10:00 PM<br />Sat–Sun: 10:00 AM – 10:00 PM</p>
-          </div>
+        <div class="contact-cta reveal d1">
+          <h3>Fastest Way to Reach Us</h3>
+          <p>Send us a photo of the problem on WhatsApp and we'll reply with an estimate and timing. No appointment needed for walk-ins during opening hours.</p>
+          <a href="https://wa.me/60139293619" target="_blank" rel="noopener" class="btn btn-primary" style="background:#25D366;">Chat on WhatsApp</a>
         </div>
       </div>
 
-      <!-- RIGHT: form -->
-      <div class="form-card">
-        <h2>Send us a message</h2>
-        <p class="hint">Fill this in and it'll open WhatsApp with your details ready to send.</p>
-
-        <div class="form-group">
-          <label>Your Name</label>
-          <input type="text" class="input" id="cName" placeholder="e.g. Ammar" />
-        </div>
-        <div class="form-group">
-          <label>What's it about?</label>
-          <select class="input" id="cDevice">
-            <option value="">Select…</option>
-            <option>Laptop Repair</option>
-            <option>Handphone Repair</option>
-            <option>Desktop / PC Repair</option>
-            <option>Buying a Second-hand Laptop</option>
-            <option>Custom PC Build</option>
-            <option>Other</option>
-          </select>
-        </div>
-        <div class="form-group">
-          <label>Message</label>
-          <textarea class="input" id="cMsg" placeholder="Tell us the problem or what you're looking for…"></textarea>
-        </div>
-        <button class="btn btn-primary" style="width:100%; justify-content:center;" onclick="sendWA()">💬 Send via WhatsApp</button>
-      </div>
-
+      <iframe
+        class="map-embed reveal"
+        src="https://www.google.com/maps?q=ZUFITECH+NILAI&z=16&output=embed"
+        loading="lazy"
+        referrerpolicy="no-referrer-when-downgrade"
+        title="ZufiTech location in Nilai"></iframe>
+      <p class="section-sub" style="text-align:center;margin:18px auto 0;"><a href="https://maps.app.goo.gl/PG9FfYiGetwgMJkE7" target="_blank" rel="noopener" style="color:var(--accent);font-weight:700;">Open in Google Maps →</a></p>
     </div>
-  </div>
+  </section>
 
-  <!-- FOOTER -->
   <footer>
     <div class="container">
       <div class="footer-grid">
         <div>
-          <div class="footer-logo">Zufi<span>Tech</span></div>
-          <p class="footer-tagline">Computer &amp; phone repair, second-hand laptops, and custom PC builds — based in Nilai, Negeri Sembilan.</p>
+          <div class="footer-logo"><img src="assets/logo.png" class="footer-logo-img" alt="" />Zufi<span>Tech</span></div>
+          <p class="footer-tagline">Computer &amp; phone repair and sales in Nilai, Negeri Sembilan. Desktops, PCs, laptops, phones, iPads &amp; tablets — fixed and sold with care.</p>
+          <p class="footer-legal">ZufiTech System Enterprise<br />SSM 202603273361 (CT0170453-T)</p>
+          <div class="footer-social">
+            <a href="https://www.tiktok.com/@zufitech" target="_blank" rel="noopener" aria-label="ZufiTech on TikTok"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 17V6l9-2v9"/><circle cx="6" cy="17" r="3"/><circle cx="15" cy="15" r="3"/></svg></a>
+            <a href="https://maps.app.goo.gl/PG9FfYiGetwgMJkE7" target="_blank" rel="noopener" aria-label="ZufiTech on Google Maps"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 10c0 5.5-8 11-8 11s-8-5.5-8-11a8 8 0 0 1 16 0z"/><circle cx="12" cy="10" r="2.7"/></svg></a>
+          </div>
         </div>
         <div class="footer-col">
           <h4>Explore</h4>
           <ul>
-            <li><a href="index.html#products">All Builds</a></li>
-            <li><a href="laptops.html">Laptops</a></li>
-            <li><a href="tracker.html">Track Order</a></li>
-            <li><a href="about.html">About</a></li>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="services.html">Services</a></li>
+            <li><a href="reviews.html">Reviews</a></li>
+            <li><a href="suppliers.html">Suppliers</a></li>
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="contact.html">Contact</a></li>
           </ul>
         </div>
         <div class="footer-col">
           <h4>Contact</h4>
           <ul>
-            <li><a href="https://wa.me/60139293619" target="_blank">💬 WhatsApp 013-929 3619</a></li>
-            <li><a href="contact.html">📍 Taman Desa Indah, Nilai</a></li>
+            <li><a href="https://wa.me/60139293619" target="_blank" rel="noopener">WhatsApp Us</a></li>
+            <li><a href="tel:+60139293619">+60 13-929 3619</a></li>
+            <li><a href="mailto:zufitech7@gmail.com">zufitech7@gmail.com</a></li>
+            <li>No 51, Jalan Indah 20,<br />Taman Desa Indah,<br />71800 Nilai, N. Sembilan</li>
           </ul>
         </div>
       </div>
       <div class="footer-bottom">
-        <p>© 2026 ZufiTech. All rights reserved.</p>
-        <p>Built by Khairul Ammar</p>
+        <p>© 2026 ZufiTech System Enterprise (SSM 202603273361). All rights reserved.</p>
       </div>
     </div>
   </footer>
 
-  <script>
-    function sendWA() {
-      var name = document.getElementById('cName').value.trim();
-      var device = document.getElementById('cDevice').value;
-      var msg = document.getElementById('cMsg').value.trim();
-      if (!name || !msg) { alert('Please fill in your name and message first.'); return; }
-      var t = 'Hi ZufiTech! I\'m ' + name + '.';
-      if (device) t += ' Regarding: ' + device + '.';
-      t += '\n\n' + msg;
-      window.open('https://wa.me/60139293619?text=' + encodeURIComponent(t), '_blank');
-    }
-  </script>
+  <a href="https://wa.me/60139293619" target="_blank" rel="noopener" class="wa-float" aria-label="Chat on WhatsApp"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.5 11.5a8 8 0 0 1-11.9 7L3.5 20l1.6-4.9a8 8 0 1 1 15.4-3.6z"/></svg></a>
+  <script src="app.js"></script>
 </body>
 </html>
